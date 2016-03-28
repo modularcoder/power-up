@@ -6,11 +6,6 @@ var GRAY_ICON = './images/icon-gray.svg';
 var boardButtonCallback = function(t) {  
   var isAuthenticated = true;
 
-  return t.popup({
-    title: "Screenful Authorize",
-    url: './card-button-popup.html'
-  });
-
   if (isAuthenticated) {
     return boardButtonCallbackAuthenticated(t);
   }
