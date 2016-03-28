@@ -3,18 +3,18 @@
 var WHITE_ICON = './images/icon-white.svg';
 var GRAY_ICON = './images/icon-gray.svg';
 
-var boardButtonCallback = function(t) {  
+var boardButtonCallback = function(t, options) {  
   var isAuthenticated = true;
 
   if (isAuthenticated) {
-    return boardButtonCallbackAuthenticated(t);
+    return boardButtonCallbackAuthenticated(t, options);
   }
   else {
-    return boardButtonCallbackUnauthenticated(t);
+    return boardButtonCallbackUnauthenticated(t, options);
   }
 };
 
-var boardButtonCallbackAuthenticated = function(t) {
+var boardButtonCallbackAuthenticated = function(t, options) {
 
   // @ToDo
   // Even if user is authenticated, we should know if he has created
@@ -92,17 +92,14 @@ var boardButtonCallbackAuthenticated = function(t) {
       },
       {
         text: 'Go to Screenful.me',
-        callback: function(t) {
-          window.open("http://screenful.me", "_blank");
-          return t.closePopup();
-        }
+        url: 'https://app.screenful.me/slideshow/demo?screens=task-breakdown'
       },
     ]
   });
 };
 
 
-var boardButtonCallbackUnauthenticated = function(t) {
+var boardButtonCallbackUnauthenticated = function(t, options) {
   return t.popup({
     title: "Screenful Authorize",
     url: './overlay.html'
