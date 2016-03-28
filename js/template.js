@@ -4,7 +4,12 @@ var WHITE_ICON = './images/icon-white.svg';
 var GRAY_ICON = './images/icon-gray.svg';
 
 var boardButtonCallback = function(t) {
-  isAuthenticated = true;
+  var isAuthenticated = true;
+
+  return t.popup({
+    title: "Screenful Authorize",
+    url: './card-button-popup.html'
+  });
 
   if (isAuthenticated) {
     return boardButtonCallbackAuthenticated();
