@@ -3,56 +3,23 @@
 var WHITE_ICON = './images/icon-white.svg';
 var GRAY_ICON = './images/icon-gray.svg';
 
-var boardButtonCallback = function(t) {
+var boardButtonCallback = function(t) {  
+  var isAuthenticated = true;
 
   return t.popup({
-    title: 'Popup List Example',
-    items: [
-      {
-        text: 'Open Overlay',
-        callback: function(t){
-          return t.overlay({
-            url: './overlay.html',
-            args: { rand: (Math.random() * 100).toFixed(0) }
-          })
-          .then(function(){
-            return t.closePopup();
-          });
-        }
-      },
-      {
-        text: 'Open Board Bar',
-        callback: function(t){
-          return t.boardBar({
-            url: './board-bar.html',
-            height: 200
-          })
-          .then(function(){
-            return t.closePopup();
-          });
-        }
-      }
-    ]
+    title: "Screenful Authorize",
+    url: './card-button-popup.html'
   });
 
-
-  
-  // var isAuthenticated = true;
-
-  // return t.popup({
-  //   title: "Screenful Authorize",
-  //   url: './card-button-popup.html'
-  // });
-
-  // if (isAuthenticated) {
-  //   return boardButtonCallbackAuthenticated();
-  // }
-  // else {
-  //   return boardButtonCallbackUnauthenticated();
-  // }
+  if (isAuthenticated) {
+    return boardButtonCallbackAuthenticated(t);
+  }
+  else {
+    return boardButtonCallbackUnauthenticated(t);
+  }
 };
 
-var boardButtonCallbackAuthenticated = function() {
+var boardButtonCallbackAuthenticated = function(t) {
 
   // @ToDo
   // Even if user is authenticated, we should know if he has created
@@ -140,10 +107,10 @@ var boardButtonCallbackAuthenticated = function() {
 };
 
 
-var boardButtonCallbackUnauthenticated = function() {
+var boardButtonCallbackUnauthenticated = function(t) {
   return t.popup({
     title: "Screenful Authorize",
-    url: './card-button-popup.html'
+    url: './overlay.html'
   });
 };
 
