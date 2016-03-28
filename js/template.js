@@ -4,19 +4,52 @@ var WHITE_ICON = './images/icon-white.svg';
 var GRAY_ICON = './images/icon-gray.svg';
 
 var boardButtonCallback = function(t) {
-  var isAuthenticated = true;
 
   return t.popup({
-    title: "Screenful Authorize",
-    url: './card-button-popup.html'
+    title: 'Popup List Example',
+    items: [
+      {
+        text: 'Open Overlay',
+        callback: function(t){
+          return t.overlay({
+            url: './overlay.html',
+            args: { rand: (Math.random() * 100).toFixed(0) }
+          })
+          .then(function(){
+            return t.closePopup();
+          });
+        }
+      },
+      {
+        text: 'Open Board Bar',
+        callback: function(t){
+          return t.boardBar({
+            url: './board-bar.html',
+            height: 200
+          })
+          .then(function(){
+            return t.closePopup();
+          });
+        }
+      }
+    ]
   });
 
-  if (isAuthenticated) {
-    return boardButtonCallbackAuthenticated();
-  }
-  else {
-    return boardButtonCallbackUnauthenticated();
-  }
+
+  
+  // var isAuthenticated = true;
+
+  // return t.popup({
+  //   title: "Screenful Authorize",
+  //   url: './card-button-popup.html'
+  // });
+
+  // if (isAuthenticated) {
+  //   return boardButtonCallbackAuthenticated();
+  // }
+  // else {
+  //   return boardButtonCallbackUnauthenticated();
+  // }
 };
 
 var boardButtonCallbackAuthenticated = function() {
