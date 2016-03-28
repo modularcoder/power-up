@@ -92,7 +92,7 @@ var boardButtonCallbackAuthenticated = function(t, options) {
       },
       {
         text: 'Go to Screenful.me',
-        url: 'https://app.screenful.me/slideshow/demo?screens=task-breakdown'
+        url: 'http://screenful.me'
       },
     ]
   });
