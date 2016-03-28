@@ -4,22 +4,14 @@ var WHITE_ICON = './images/icon-white.svg';
 var GRAY_ICON = './images/icon-gray.svg';
 
 var boardButtonCallback = function(t) {
+  isAuthenticated = true;
 
-  isLoggedIn = true;
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+  if (isAuthenticated) {
+    return boardButtonCallbackAuthenticated();
+  }
+  else {
+    return boardButtonCallbackUnauthenticated();
+  }
 };
 
 var boardButtonCallbackAuthenticated = function() {
